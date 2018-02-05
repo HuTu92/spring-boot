@@ -7,6 +7,8 @@ import java.util.logging.Logger;
 
 /**
  * Created by liuchunlong on 2018/2/2.
+ *
+ * ApplicationListener 继承 java.util.EventListener
  */
 @Component
 public class DemoListener implements ApplicationListener<DemoEvent> {

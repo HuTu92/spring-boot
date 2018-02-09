@@ -1,8 +1,12 @@
 package com.github.fnpac.config;
 
+import com.github.fnpac.spring.messageconverter.DividingMessageConverter;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import java.util.List;
 
 /**
  * Created by 刘春龙 on 2018/2/8.
@@ -40,6 +44,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/toUpload").setViewName("/upload");
+        registry.addViewController("/toConvert").setViewName("/converter");
     }
 
     /**
@@ -55,4 +60,13 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 //        multipartResolver.setMaxUploadSize(1000000);
 //        return multipartResolver;
 //    }
+
+    //////////////////////////////////////
+    //      messageconverter
+    //////////////////////////////////////
+
+    @Override
+    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+        converters.add(new DividingMessageConverter());
+    }
 }

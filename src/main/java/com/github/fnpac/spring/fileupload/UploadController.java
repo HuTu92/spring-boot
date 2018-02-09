@@ -1,9 +1,7 @@
 package com.github.fnpac.spring.fileupload;
 
-import com.github.fnpac.spring.advice.DemoObj;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;

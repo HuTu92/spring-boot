@@ -1,4 +1,4 @@
-# spring-mvc
+# spring-boot
 
 **_涉及特性：_**
 
@@ -7,3 +7,4 @@
 - Spring TaskExecutor
 - Spring ControllerAdvice
 - Spring FileUpload
+- Spring MessageConverter

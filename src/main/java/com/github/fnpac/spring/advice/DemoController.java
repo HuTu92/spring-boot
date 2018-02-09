@@ -1,5 +1,6 @@
 package com.github.fnpac.spring.advice;
 
+import com.github.fnpac.pojo.DemoObj;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;

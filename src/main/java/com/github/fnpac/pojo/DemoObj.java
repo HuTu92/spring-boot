@@ -1,4 +1,4 @@
-package com.github.fnpac.spring.advice;
+package com.github.fnpac.pojo;
 
 /**
  * Created by 刘春龙 on 2018/2/8.
@@ -7,6 +7,11 @@ public class DemoObj {
 
     private String id;
     private String name;
+
+    public DemoObj(String id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public String getId() {
         return id;

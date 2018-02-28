@@ -8,3 +8,5 @@
 - Spring ControllerAdvice
 - Spring FileUpload
 - Spring MessageConverter
+- 定制Banner
+- @ConfigurationProperties

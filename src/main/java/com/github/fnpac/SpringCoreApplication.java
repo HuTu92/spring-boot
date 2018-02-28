@@ -1,12 +1,15 @@
 package com.github.fnpac;
 
+import com.github.fnpac.spring.properties.Author;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import java.io.IOException;
 
 @SpringBootApplication
+@EnableConfigurationProperties(value = Author.class)
 public class SpringCoreApplication {
 
     public static void main(String[] args) throws IOException {

@@ -2,20 +2,12 @@ package com.github.fnpac.config;
 
 import com.github.fnpac.pojo.DemoObj;
 import com.github.fnpac.spring.messageconverter.DividingMessageConverter;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.autoconfigure.web.HttpMessageConverters;
+import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.boot.autoconfigure.web.HttpMessageConvertersAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.StringHttpMessageConverter;
-import org.springframework.http.converter.xml.SourceHttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Created by 刘春龙 on 2018/2/8.
@@ -73,21 +65,31 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     //////////////////////////////////////
     //      messageconverter
     //////////////////////////////////////
-    @Override
-    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
-        converters.add(new DividingMessageConverter());
+//    @Override
+//    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+//        converters.add(new DividingMessageConverter());
+//    }
+
+    /**
+     * {@link HttpMessageConvertersAutoConfiguration#HttpMessageConvertersAutoConfiguration(ObjectProvider)}注入{@link DividingMessageConverter} bean
+     *
+     * @return
+     */
+    @Bean
+    public DividingMessageConverter dividingMessageConverter() {
+        return new DividingMessageConverter();
     }
 
     /**
      * spring boot customize config for HttpMessageConverter
-     *
+     * <p>
      * WebMvcAutoConfiguration will lazy autowires HttpMessageConverters
-     *      Autowire logic:
-     *          first by id;
-     *          then by type;
+     * Autowire logic:
+     * first by id;
+     * then by type;
      * so the bean name of HttpMessageConverters should be messageConverters，
      * if not, there should be only one bean of HttpMessageConverters type.
-     *
+     * <p>
      * 配置HttpMessageConverters bean，会导致丢弃HttpMessageConvertersAutoConfiguration自动配置中通过构造函数注入的converters
      */
 //    @Bean

@@ -7,6 +7,7 @@
 - Spring TaskExecutor
 - Spring ControllerAdvice
 - Spring FileUpload
-- Spring MessageConverter
-- 定制Banner
+- 自定义HttpMessageConverter及配置
+- Spring ObjectProvider
+- 定制Spring启动Banner
 - @ConfigurationProperties

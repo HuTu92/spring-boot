@@ -6,6 +6,7 @@
 	<groupId>com.github.fnpac</groupId>
 	<artifactId>spring-boot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<!-- 内嵌tomcat、jetty不支持以jar包形式运行jsp -->
 	<packaging>war</packaging>
 
 	<name>spring-boot</name>

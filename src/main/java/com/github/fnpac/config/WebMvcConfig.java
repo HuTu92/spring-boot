@@ -2,8 +2,14 @@ package com.github.fnpac.config;
 
 import com.github.fnpac.pojo.DemoObj;
 import com.github.fnpac.spring.messageconverter.DividingMessageConverter;
+import org.apache.catalina.Context;
+import org.apache.catalina.connector.Connector;
+import org.apache.tomcat.util.descriptor.web.SecurityCollection;
+import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.autoconfigure.web.HttpMessageConvertersAutoConfiguration;
+import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
+import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -113,5 +119,36 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Bean
     public DemoObj lana() {
         return new DemoObj("002", "lana");
+    }
+
+    //////////////////////////////////////
+    //      ssl
+    //      redirect 8080 to 8443
+    //////////////////////////////////////
+    @Bean
+    public EmbeddedServletContainerFactory servletContainerFactory() {
+        TomcatEmbeddedServletContainerFactory factory = new TomcatEmbeddedServletContainerFactory() {
+            @Override
+            protected void postProcessContext(Context context) {
+                SecurityConstraint securityConstraint = new SecurityConstraint();
+                securityConstraint.setUserConstraint("CONFIDENTIAL");
+                SecurityCollection collection = new SecurityCollection();
+                collection.addPattern("/*");
+                securityConstraint.addCollection(collection);
+                context.addConstraint(securityConstraint);
+            }
+        };
+        factory.addAdditionalTomcatConnectors(createHttpConnector());
+        return factory;
+    }
+
+    @Bean
+    public Connector createHttpConnector() {
+        Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
+        connector.setScheme("http");
+        connector.setSecure(false);
+        connector.setPort(8080);
+        connector.setRedirectPort(8443);
+        return connector;
     }
 }

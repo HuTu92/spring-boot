@@ -1,0 +1,26 @@
+# jsp支持
+spring:
+  mvc:
+    view:
+      suffix: .jsp
+      prefix: /WEB-INF/views/
+# 关闭默认模板引擎
+  thymeleaf:
+    cache: false
+    enabled: false
+
+################################
+#       自定义配置
+################################
+author:
+  username: 凡派，
+  email: 631521383@qq.com
+
+# tomcat ssl
+server:
+  port: 8443
+  ssl:
+    key-store: classpath:keystore.p12
+    key-store-password: qwe521314
+    keyStoreType: PKCS12
+    keyAlias: tomcat

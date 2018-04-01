@@ -26,6 +26,6 @@ public class PropertiesController {
 
     @RequestMapping(value = "/app/info", method = RequestMethod.GET, produces = "application/json;charset=UTF-8")
     public @ResponseBody String info() {
-        return author.getUsername() + " - " + author.getEmail() + " - " + description.getDescription();
+        return author.getUsername() + " @ " + author.getEmail() + " - " + description.getDescription();
     }
 }

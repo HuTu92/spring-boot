@@ -86,7 +86,17 @@
 		</dependency>
 		<!-- 支持jsp end -->
 
+		<!--
+			支持热部署，方式二（spring boot 默认支持热部署）
 
+			修改完类之后，rebuild project 或者 rebuild xxx.java以使修改生效
+		 -->
+		<!--
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>springloaded</artifactId>
+		</dependency>
+		-->
 	</dependencies>
 
 	<build>
@@ -95,7 +105,24 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-
+				<!-- 支持热部署，方式一 -->
+				<!--
+				<dependencies>
+					<dependency>
+						<groupId>org.springframework</groupId>
+						<artifactId>springloaded</artifactId>
+						<version>${spring-loaded.version}</version>
+					</dependency>
+				</dependencies>
+				-->
+				<configuration>
+					<!-- 支持热部署，方式二 -->
+                    <!--
+					<jvmArguments>
+						-javaagent:${settings.localRepository}${file.separator}org${file.separator}springframework${file.separator}springloaded${file.separator}${spring-loaded.version}${file.separator}springloaded-${spring-loaded.version}.jar -noverify
+					</jvmArguments>
+					-->
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

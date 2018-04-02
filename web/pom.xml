@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>spring-boot</artifactId>
+        <groupId>com.github.fnpac</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>web</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.fnpac</groupId>
+            <artifactId>service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <!--
+			支持热部署，方式二（spring boot 默认支持热部署）
+
+			修改完类之后，rebuild project 或者 rebuild xxx.java以使修改生效
+		 -->
+        <!--
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>springloaded</artifactId>
+        </dependency>
+        -->
+    </dependencies>
+
+    <build>
+        <finalName>spring-boot</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <!-- 支持热部署，方式一 -->
+                <!--
+                <dependencies>
+                    <dependency>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>springloaded</artifactId>
+                        <version>${spring-loaded.version}</version>
+                    </dependency>
+                </dependencies>
+                -->
+                <configuration>
+                    <!-- 支持热部署，方式二 -->
+                    <!--
+					<jvmArguments>
+						-javaagent:${settings.localRepository}${file.separator}org${file.separator}springframework${file.separator}springloaded${file.separator}${spring-loaded.version}${file.separator}springloaded-${spring-loaded.version}.jar -noverify
+					</jvmArguments>
+					-->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

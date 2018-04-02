@@ -8,8 +8,6 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
-import java.util.function.BiFunction;
-import java.util.function.BinaryOperator;
 
 /**
  * Created by 刘春龙 on 2018/3/2.

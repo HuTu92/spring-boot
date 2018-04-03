@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Created by 刘春龙 on 2018/4/1.
  */
 @Controller
-public class DemoObjController {
+public class  DemoObjController {
 
     private final DemoObjService demoObjService;
 

@@ -19,7 +19,7 @@
         </dependency>
 
         <!--
-			支持热部署，方式二（spring boot 默认支持热部署）
+			热部署方式二（spring boot 默认支持热部署）
 
 			修改完类之后，rebuild project 或者 rebuild xxx.java以使修改生效
 		 -->
@@ -29,6 +29,17 @@
             <artifactId>springloaded</artifactId>
         </dependency>
         -->
+
+        <!--
+            热部署方式三
+
+            详情查看：Spring Boot Maven Plugin.md
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
     <build>
@@ -37,7 +48,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <!-- 支持热部署，方式一 -->
+                <!-- 热部署方式一 -->
                 <!--
                 <dependencies>
                     <dependency>
@@ -48,12 +59,23 @@
                 </dependencies>
                 -->
                 <configuration>
-                    <!-- 支持热部署，方式二 -->
+                    <!-- 热部署方式二 -->
                     <!--
 					<jvmArguments>
 						-javaagent:${settings.localRepository}${file.separator}org${file.separator}springframework${file.separator}springloaded${file.separator}${spring-loaded.version}${file.separator}springloaded-${spring-loaded.version}.jar -noverify
 					</jvmArguments>
 					-->
+                    <!--
+                        通过在Jar中添加一个启动脚本来为*nix机器创建一个"完全可执行"的Jar。
+                        目前，有些工具不接受这种格式，因此您可能无法始终使用此技术。
+
+                        例如，"jar -xf"可能无法提取已经被处理为"完全可执行"的jar或war。
+
+                        建议您只有在打算直接执行时，启用此选项，而不是使用"java -jar"运行它或将它部署到servlet容器。
+                    -->
+                    <!--
+                    <executable>false</executable>
+                    -->
                 </configuration>
             </plugin>
         </plugins>

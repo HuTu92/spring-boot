@@ -12,4 +12,4 @@
 - 定制Spring启动Banner
 - @ConfigurationProperties
 - Tomcat SSL
-- Spring boot支持热部署
+- Spring boot支持热部署(三种方式，不包括JRebel)
